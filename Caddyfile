@@ -1,0 +1,26 @@
+{
+	frankenphp
+	order mercure after encode
+	order vulcain after reverse_proxy
+}
+
+:{$PORT} {
+	root * public
+	encode zstd gzip
+    
+    # FORCER LES HEADERS CORS ICI
+	header {
+		Access-Control-Allow-Origin "https://frontend-smile-up.vercel.app"
+		Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+		Access-Control-Allow-Headers "Accept, Authorization, Content-Type"
+		Access-Control-Max-Age "3600"
+	}
+
+    # Gérer le "Preflight" (la requête OPTIONS que fait le navigateur)
+	@options {
+		method OPTIONS
+	}
+	respond @options 204
+
+	php_server
+}
