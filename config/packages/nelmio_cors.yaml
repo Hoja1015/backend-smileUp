@@ -1,15 +1,13 @@
-# config/packages/nelmio_cors.yaml
 nelmio_cors:
     defaults:
         origin_regex: true
-        allow_origin: ['*'] # On affinera avec l'URL Vercel plus tard
+        allow_origin: ['https://frontend-smile-up.vercel.app'] # Ton URL Vercel ici
         allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
-        allow_headers: ['*']
-        expose_headers: ['Content-Disposition']
+        allow_headers: ['Content-Type', 'Authorization']
         max_age: 3600
     paths:
-        '^/api/': # Assurez-vous que vos routes API commencent par /api
-            allow_origin: ['*']
+        '^/api/':
+            allow_origin: ['https://frontend-smile-up.vercel.app']
             allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
-            allow_headers: ['*']
+            allow_headers: ['Content-Type', 'Authorization']
             max_age: 3600
